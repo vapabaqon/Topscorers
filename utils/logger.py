@@ -1,9 +1,12 @@
+"""Module used for logging."""
+
 import logging
 from logging.handlers import TimedRotatingFileHandler
 
 logger = logging.getLogger(__name__)
 
 def setup_logger():
+    """Functio to define log levels"""
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
     formatter.encoding = 'utf-8'
@@ -19,4 +22,3 @@ def setup_logger():
     logger.addHandler(file_handler)
 
     return logger
-

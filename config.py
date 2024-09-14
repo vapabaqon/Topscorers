@@ -9,5 +9,5 @@ class Config:
             'X-Requested-With': 'XMLHttpRequest',
             'Accept': 'application/json, text/plain, */*'
         }
-    TEAM_ID = 227092
-    LEAGUE_ID = 60198
+    TEAM_ID = 219540 #Team Philippe
+    LEAGUE_ID = 60198 #League abaQon

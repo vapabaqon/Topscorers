@@ -1,4 +1,4 @@
-"""Module making get requests."""
+"""Module making GET requests."""
 
 import json
 import requests
@@ -20,3 +20,9 @@ def make_get_request(url, jwt_token):
     except json.JSONDecodeError as json_err:
         logger.error('Fehler beim Verarbeiten der JSON-Antwort: %s',{json_err})
     return None
+
+def load_credentials(service_name):
+    """Lädt die Anmeldeinformationen für den angegebenen Dienst aus der credentials.json Datei"""
+    with open('credentials.json', 'r', encoding="utf-8") as file:
+        credentials = json.load(file)
+    return credentials.get(service_name)
