@@ -1,3 +1,5 @@
+"""Main programme"""
+
 from utils import logger
 from services import account as acc
 
