@@ -14,13 +14,31 @@ sys.path.append(parent_dir)
 def get_jwt_token():
     """Function to get the JWT token."""
     try:
-        # Datei credentials.json einlesen
+        # Datei credentials.json einlesen und Anmeldeinformationen für "Topscorers" extrahieren
         with open('credentials.json', 'r', encoding="utf-8") as file:
-            request_body = json.load(file)
+            credentials = json.load(file)
+            topscorers_credentials = credentials.get('Topscorers')
+            if not topscorers_credentials:
+                raise ValueError("Anmeldeinformationen für Topscorers nicht gefunden.")
 
+            email = topscorers_credentials.get('email')
+            password = topscorers_credentials.get('password')
+            if not email or not password:
+                raise ValueError("Email oder Passwort fehlt für Topscorers.")
+
+        # Request-Body mit den geladenen Anmeldeinformationen erstellen
+        request_body = {
+            "email": email,
+            "password": password
+        }
+
+        # API-Anfrage stellen
         url = 'https://topscorers.ch/api/login'
         headers = Config.BASIC_HEADERS
         request_response = requests.post(url, json=request_body, headers=headers, timeout=10).text
         return request_response
+
     except requests.exceptions.RequestException as e:
         logger.error('Ein Fehler ist aufgetreten: %s', {e})
+    except ValueError as e:
+        logger.error('Fehler in den Anmeldeinformationen: %s', {e})
