@@ -8,14 +8,18 @@ import requests
 from utils.logger import logger
 from config import Config
 
+# Den absoluten Pfad zum Projektverzeichnis bestimmen
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(parent_dir)
 
 def get_jwt_token():
     """Function to get the JWT token."""
     try:
+        # Absoluter Pfad zu credentials.json
+        credentials_path = os.path.join(parent_dir, 'credentials.json')
+
         # Datei credentials.json einlesen und Anmeldeinformationen für "Topscorers" extrahieren
-        with open('credentials.json', 'r', encoding="utf-8") as file:
+        with open(credentials_path, 'r', encoding="utf-8") as file:
             credentials = json.load(file)
             topscorers_credentials = credentials.get('Topscorers')
             if not topscorers_credentials:

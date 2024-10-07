@@ -5,9 +5,9 @@ import sys
 from datetime import datetime as dt
 
 import requests
-from services.login import get_jwt_token
 from utils.logger import logger
 from utils.api_requests import make_get_request
+from services.login import get_jwt_token
 from config import Config
 
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,8 +21,9 @@ def get_login_bonus(token):
         headers["Authorization"] = f'Bearer {token}'
         request_response = make_get_request(url, token)
         if request_response and request_response.get("bonus") is not None:
+            bonus_value = request_response.get("bonus")
             logger.info('%s: Bonus erfolgreich erhalten.', {dt.now().strftime("%d.%m.%Y")})
-            return 5000
+            return bonus_value
         else:
             logger.info('%s: Bonus bereits erhalten.', {dt.now().strftime("%d.%m.%Y")})
             return None
