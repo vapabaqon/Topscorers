@@ -1,4 +1,5 @@
 """Module containing configuration data."""
+# pylint: disable=line-too-long
 
 class Config:
     """Class representing static information."""
