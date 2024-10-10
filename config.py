@@ -10,5 +10,10 @@ class Config:
             'X-Requested-With': 'XMLHttpRequest',
             'Accept': 'application/json, text/plain, */*'
         }
-    TEAM_ID = 219540 #Team Philippe
+    #Team Philippe
+    TEAM_ID = 219540
+    #League abaQon
     LEAGUE_ID = 60198 #League abaQon
+    # Planungszeit für den Task (im Format HH:MM)
+    #SCHEDULE_TIME = "19:00"
+    
